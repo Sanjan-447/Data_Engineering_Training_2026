@@ -1,0 +1,657 @@
+//1.all Products
+db.products.find().toArray();
+[
+  {
+    _id: 1,
+    name: 'Laptop',
+    category: 'Electronics',
+    price: 75000,
+    stock: 10,
+    city: 'Hyderabad'
+  },
+  {
+    _id: 2,
+    name: 'Phone',
+    category: 'Electronics',
+    price: 50000,
+    stock: 15,
+    city: 'Bangalore'
+  },
+  {
+    _id: 3,
+    name: 'Chair',
+    category: 'Furniture',
+    price: 7000,
+    stock: 20,
+    city: 'Mumbai'
+  },
+  {
+    _id: 4,
+    name: 'Desk',
+    category: 'Furniture',
+    price: 15000,
+    stock: 8,
+    city: 'Delhi'
+  },
+  {
+    _id: 5,
+    name: 'Tablet',
+    category: 'Electronics',
+    price: 30000,
+    stock: 12,
+    city: 'Chennai'
+  },
+  {
+    _id: 6,
+    name: 'Printer',
+    category: 'Electronics',
+    price: 12000,
+    stock: 5,
+    city: 'Hyderabad'
+  }
+]
+// 2. Electronics category
+db.products.find({category : "Electronics"});
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000,
+  stock: 10,
+  city: 'Hyderabad'
+}
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore'
+}
+{
+  _id: 5,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000,
+  stock: 12,
+  city: 'Chennai'
+}
+{
+  _id: 6,
+  name: 'Printer',
+  category: 'Electronics',
+  price: 12000,
+  stock: 5,
+  city: 'Hyderabad'
+}
+// 3. Hyderabad products
+db.products.find({city : "Hyderabad"});
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000,
+  stock: 10,
+  city: 'Hyderabad'
+}
+{
+  _id: 6,
+  name: 'Printer',
+  category: 'Electronics',
+  price: 12000,
+  stock: 5,
+  city: 'Hyderabad'
+}
+//4.  price > 30000
+db.products.find({price : {$gt:30000}});
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000,
+  stock: 10,
+  city: 'Hyderabad'
+}
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore'
+}
+//5. price < 20000
+db.products.find({price : {$lt:20000}});
+{
+  _id: 3,
+  name: 'Chair',
+  category: 'Furniture',
+  price: 7000,
+  stock: 20,
+  city: 'Mumbai'
+}
+{
+  _id: 4,
+  name: 'Desk',
+  category: 'Furniture',
+  price: 15000,
+  stock: 8,
+  city: 'Delhi'
+}
+{
+  _id: 6,
+  name: 'Printer',
+  category: 'Electronics',
+  price: 12000,
+  stock: 5,
+  city: 'Hyderabad'
+}
+// Filtering queries
+// 6. price between 10000 and 50000
+db.products.find({price : {$gte:10000,$lte:50000}});
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore'
+}
+{
+  _id: 4,
+  name: 'Desk',
+  category: 'Furniture',
+  price: 15000,
+  stock: 8,
+  city: 'Delhi'
+}
+{
+  _id: 5,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000,
+  stock: 12,
+  city: 'Chennai'
+}
+{
+  _id: 6,
+  name: 'Printer',
+  category: 'Electronics',
+  price: 12000,
+  stock: 5,
+  city: 'Hyderabad'
+}
+//7. Furniture category
+db.products.find({category : "Furniture"});
+{
+  _id: 3,
+  name: 'Chair',
+  category: 'Furniture',
+  price: 7000,
+  stock: 20,
+  city: 'Mumbai'
+}
+{
+  _id: 4,
+  name: 'Desk',
+  category: 'Furniture',
+  price: 15000,
+  stock: 8,
+  city: 'Delhi'
+}
+//8. Electronics category and in Hyderabad
+
+db.products.find({category : "Electronics" , city : "Hyderabad"});
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000,
+  stock: 10,
+  city: 'Hyderabad'
+}
+{
+  _id: 6,
+  name: 'Printer',
+  category: 'Electronics',
+  price: 12000,
+  stock: 5,
+  city: 'Hyderabad'
+}
+//9. Hyderabad or Bangalore
+db.products.find({$or :[ {city : "Hyderabad"}, {city: "Bangalore"} ]});
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000,
+  stock: 10,
+  city: 'Hyderabad'
+}
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore'
+}
+{
+  _id: 6,
+  name: 'Printer',
+  category: 'Electronics',
+  price: 12000,
+  stock: 5,
+  city: 'Hyderabad'
+}
+//10. not Furniture category
+db.products.find({category :{$ne: "Furniture"}});
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000,
+  stock: 10,
+  city: 'Hyderabad'
+}
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore'
+}
+{
+  _id: 5,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000,
+  stock: 12,
+  city: 'Chennai'
+}
+{
+  _id: 6,
+  name: 'Printer',
+  category: 'Electronics',
+  price: 12000,
+  stock: 5,
+  city: 'Hyderabad'
+}
+// Projection queries
+//11. only name and price
+db.products.find({}, {name: 1, price: 1, _id:0});
+{
+  name: 'Laptop',
+  price: 75000
+}
+{
+  name: 'Phone',
+  price: 50000
+}
+{
+  name: 'Chair',
+  price: 7000
+}
+{
+  name: 'Desk',
+  price: 15000
+}
+{
+  name: 'Tablet',
+  price: 30000
+}
+{
+  name: 'Printer',
+  price: 12000
+}
+//12. name, category and city
+db.products.find({}, {name : 1, category: 1, city : 1, _id:0});
+{
+  name: 'Laptop',
+  category: 'Electronics',
+  city: 'Hyderabad'
+}
+{
+  name: 'Phone',
+  category: 'Electronics',
+  city: 'Bangalore'
+}
+{
+  name: 'Chair',
+  category: 'Furniture',
+  city: 'Mumbai'
+}
+{
+  name: 'Desk',
+  category: 'Furniture',
+  city: 'Delhi'
+}
+{
+  name: 'Tablet',
+  category: 'Electronics',
+  city: 'Chennai'
+}
+{
+  name: 'Printer',
+  category: 'Electronics',
+  city: 'Hyderabad'
+}
+//sorting queries
+//13. sorted by price in ascending order
+db.products.find().sort({price : 1});
+{
+  _id: 3,
+  name: 'Chair',
+  category: 'Furniture',
+  price: 7000,
+  stock: 20,
+  city: 'Mumbai'
+}
+{
+  _id: 6,
+  name: 'Printer',
+  category: 'Electronics',
+  price: 12000,
+  stock: 5,
+  city: 'Hyderabad'
+}
+{
+  _id: 4,
+  name: 'Desk',
+  category: 'Furniture',
+  price: 15000,
+  stock: 8,
+  city: 'Delhi'
+}
+{
+  _id: 5,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000,
+  stock: 12,
+  city: 'Chennai'
+}
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore'
+}
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000,
+  stock: 10,
+  city: 'Hyderabad'
+}
+//14.sorted by price in descending order
+db.products.find().sort({price : -1});
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000,
+  stock: 10,
+  city: 'Hyderabad'
+}
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore'
+}
+{
+  _id: 5,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000,
+  stock: 12,
+  city: 'Chennai'
+}
+{
+  _id: 4,
+  name: 'Desk',
+  category: 'Furniture',
+  price: 15000,
+  stock: 8,
+  city: 'Delhi'
+}
+{
+  _id: 6,
+  name: 'Printer',
+  category: 'Electronics',
+  price: 12000,
+  stock: 5,
+  city: 'Hyderabad'
+}
+{
+  _id: 3,
+  name: 'Chair',
+  category: 'Furniture',
+  price: 7000,
+  stock: 20,
+  city: 'Mumbai'
+}
+
+//limit queries
+//15. top 3 most expensive products
+db.products.find().sort({price : -1}).limit(3);
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000,
+  stock: 10,
+  city: 'Hyderabad'
+}
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore'
+}
+{
+  _id: 5,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000,
+  stock: 12,
+  city: 'Chennai'
+}
+//16. 2 cheapest products
+db.products.find().sort({price : 1}).limit(2);
+{
+  _id: 3,
+  name: 'Chair',
+  category: 'Furniture',
+  price: 7000,
+  stock: 20,
+  city: 'Mumbai'
+}
+{
+  _id: 6,
+  name: 'Printer',
+  category: 'Electronics',
+  price: 12000,
+  stock: 5,
+  city: 'Hyderabad'
+}
+//skip queries
+//17. all products skipping first 2 documents
+db.products.find().skip(2);
+{
+  _id: 3,
+  name: 'Chair',
+  category: 'Furniture',
+  price: 7000,
+  stock: 20,
+  city: 'Mumbai'
+}
+{
+  _id: 4,
+  name: 'Desk',
+  category: 'Furniture',
+  price: 15000,
+  stock: 8,
+  city: 'Delhi'
+}
+{
+  _id: 5,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000,
+  stock: 12,
+  city: 'Chennai'
+}
+{
+  _id: 6,
+  name: 'Printer',
+  category: 'Electronics',
+  price: 12000,
+  stock: 5,
+  city: 'Hyderabad'
+}
+//additional filtering 
+//18. stock > 10
+db.products.find({stock : {$gt : 10}});
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore'
+}
+{
+  _id: 3,
+  name: 'Chair',
+  category: 'Furniture',
+  price: 7000,
+  stock: 20,
+  city: 'Mumbai'
+}
+{
+  _id: 5,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000,
+  stock: 12,
+  city: 'Chennai'
+}
+//19. stock <= 10
+db.products.find({stock : {$lte : 10}});
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000,
+  stock: 10,
+  city: 'Hyderabad'
+}
+{
+  _id: 4,
+  name: 'Desk',
+  category: 'Furniture',
+  price: 15000,
+  stock: 8,
+  city: 'Delhi'
+}
+{
+  _id: 6,
+  name: 'Printer',
+  category: 'Electronics',
+  price: 12000,
+  stock: 5,
+  city: 'Hyderabad'
+}
+//20. Electronics products with price > 40000
+db.products.find({category : "Electronics" , price : {$gt : 40000}});
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000,
+  stock: 10,
+  city: 'Hyderabad'
+}
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore'
+}
+//update queries
+//21. price of product named laptop
+db.products.updateOne({name : "Laptop"} , {$set : {price : 55000}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+//22. Add a new field called discount=10 for Electronics products
+db.products.updateMany({category: "Electronics"} ,{$set : {discount : 10}});
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+//delete operations
+//23. delete product name printer
+db.products.deleteOne({name:"Printer"});
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+//24. delete all products belonging to furniture category
+db.products.deleteMany({category:"Furniture"});
+{
+  acknowledged: true,
+  deletedCount: 2
+}
+//counting docs
+//25. total no of products
+db.products.countDocuments();
+3
+//26. no of products in ELectronics category
+db.products.countDocuments({category : "Electronics"});
+3
+// Aggregation queries
+//27. total stock available for each category
+db.products.aggregate([ {$group : {_id: "$category", totalStock : {$sum : "$stock"} }}]);
+{
+  _id: 'Electronics',
+  totalStock: 37
+}
+//28 avg price of products for each category
+db.products.aggregate([ {$group : {_id: "$category", avgPrice : {$avg : "$price"} }}]);
+{
+  _id: 'Electronics',
+  avgPrice: 45000
+}
+//29. max product price
+db.products.aggregate([ {$group : {_id: null, maxPrice : {$max : "$price"} }}]);
+{
+  _id: null,
+  maxPrice: 55000
+}
+//30. total inventory value
+db.products.aggregate([{ $group : {_id : null, TotalInventoryValue : {$sum : {$multiply: ["$price" , "$stock"]}}}}]);
+{
+  _id: null,
+  TotalInventoryValue: 1660000
+}
+}

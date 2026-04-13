@@ -1,0 +1,846 @@
+use retail_db
+switched to db retail_db
+db["customers"].find()
+db.customers.insertMany([
+{ customer_id:1, name:"Arjun", city:"Hyderabad" },
+{ customer_id:2, name:"Rahul", city:"Bangalore" },
+{ customer_id:3, name:"Sneha", city:"Mumbai" },
+{ customer_id:4, name:"Amit", city:"Delhi" },
+{ customer_id:5, name:"Priya", city:"Hyderabad" }
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('69dcbfbf1c74ae74cd7397bb'),
+    '1': ObjectId('69dcbfbf1c74ae74cd7397bc'),
+    '2': ObjectId('69dcbfbf1c74ae74cd7397bd'),
+    '3': ObjectId('69dcbfbf1c74ae74cd7397be'),
+    '4': ObjectId('69dcbfbf1c74ae74cd7397bf')
+  }
+}
+db.products.insertMany([
+{ product_id:101, name:"Laptop", category:"Electronics", price:75000 },
+{ product_id:102, name:"Phone", category:"Electronics", price:50000 },
+{ product_id:103, name:"Desk", category:"Furniture", price:15000 },
+{ product_id:104, name:"Chair", category:"Furniture", price:7000 },
+{ product_id:105, name:"Tablet", category:"Electronics", price:30000 }
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('69dcc01c1c74ae74cd7397c0'),
+    '1': ObjectId('69dcc01c1c74ae74cd7397c1'),
+    '2': ObjectId('69dcc01c1c74ae74cd7397c2'),
+    '3': ObjectId('69dcc01c1c74ae74cd7397c3'),
+    '4': ObjectId('69dcc01c1c74ae74cd7397c4')
+  }
+}
+db.orders.insertMany([
+{ order_id:1001, customer_id:1, product_id:101, quantity:1, order_date:"2024-03-01" },
+{ order_id:1002, customer_id:2, product_id:102, quantity:1, order_date:"2024-03-02" },
+{ order_id:1003, customer_id:1, product_id:105, quantity:2, order_date:"2024-03-03" },
+{ order_id:1004, customer_id:3, product_id:103, quantity:1, order_date:"2024-03-05" },
+{ order_id:1005, customer_id:5, product_id:102, quantity:3, order_date:"2024-03-07" }
+]);
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('69dcc06e1c74ae74cd7397c5'),
+    '1': ObjectId('69dcc06e1c74ae74cd7397c6'),
+    '2': ObjectId('69dcc06e1c74ae74cd7397c7'),
+    '3': ObjectId('69dcc06e1c74ae74cd7397c8'),
+    '4': ObjectId('69dcc06e1c74ae74cd7397c9')
+  }
+}
+//1. all customers
+db.customers.find();
+{
+  _id: ObjectId('69dcbfbf1c74ae74cd7397bb'),
+  customer_id: 1,
+  name: 'Arjun',
+  city: 'Hyderabad'
+}
+{
+  _id: ObjectId('69dcbfbf1c74ae74cd7397bc'),
+  customer_id: 2,
+  name: 'Rahul',
+  city: 'Bangalore'
+}
+{
+  _id: ObjectId('69dcbfbf1c74ae74cd7397bd'),
+  customer_id: 3,
+  name: 'Sneha',
+  city: 'Mumbai'
+}
+{
+  _id: ObjectId('69dcbfbf1c74ae74cd7397be'),
+  customer_id: 4,
+  name: 'Amit',
+  city: 'Delhi'
+}
+{
+  _id: ObjectId('69dcbfbf1c74ae74cd7397bf'),
+  customer_id: 5,
+  name: 'Priya',
+  city: 'Hyderabad'
+}
+//2. all products 
+db.products.find();
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 55000,
+  stock: 10,
+  city: 'Hyderabad',
+  discount: 10
+}
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore',
+  discount: 10
+}
+{
+  _id: 5,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000,
+  stock: 12,
+  city: 'Chennai',
+  discount: 10
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c0'),
+  product_id: 101,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c1'),
+  product_id: 102,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c2'),
+  product_id: 103,
+  name: 'Desk',
+  category: 'Furniture',
+  price: 15000
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c3'),
+  product_id: 104,
+  name: 'Chair',
+  category: 'Furniture',
+  price: 7000
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c4'),
+  product_id: 105,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000
+}
+//3. all Orders
+db.orders.find();
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c5'),
+  order_id: 1001,
+  customer_id: 1,
+  product_id: 101,
+  quantity: 1,
+  order_date: '2024-03-01'
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c6'),
+  order_id: 1002,
+  customer_id: 2,
+  product_id: 102,
+  quantity: 1,
+  order_date: '2024-03-02'
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c7'),
+  order_id: 1003,
+  customer_id: 1,
+  product_id: 105,
+  quantity: 2,
+  order_date: '2024-03-03'
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c8'),
+  order_id: 1004,
+  customer_id: 3,
+  product_id: 103,
+  quantity: 1,
+  order_date: '2024-03-05'
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c9'),
+  order_id: 1005,
+  customer_id: 5,
+  product_id: 102,
+  quantity: 3,
+  order_date: '2024-03-07'
+}
+//4. all customer from Hyderabad
+db.customers.find({city: "Hyderabad"});
+{
+  _id: ObjectId('69dcbfbf1c74ae74cd7397bb'),
+  customer_id: 1,
+  name: 'Arjun',
+  city: 'Hyderabad'
+}
+{
+  _id: ObjectId('69dcbfbf1c74ae74cd7397bf'),
+  customer_id: 5,
+  name: 'Priya',
+  city: 'Hyderabad'
+}
+db.products.find({category: "Electronics"});
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 55000,
+  stock: 10,
+  city: 'Hyderabad',
+  discount: 10
+}
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore',
+  discount: 10
+}
+{
+  _id: 5,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000,
+  stock: 12,
+  city: 'Chennai',
+  discount: 10
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c0'),
+  product_id: 101,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c1'),
+  product_id: 102,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c4'),
+  product_id: 105,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000
+}
+
+db.products.find({ price : {$gt : 30000}});
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 55000,
+  stock: 10,
+  city: 'Hyderabad',
+  discount: 10
+}
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore',
+  discount: 10
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c0'),
+  product_id: 101,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c1'),
+  product_id: 102,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000
+}
+db.orders.find({quantity : {$gt : 1}});
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c7'),
+  order_id: 1003,
+  customer_id: 1,
+  product_id: 105,
+  quantity: 2,
+  order_date: '2024-03-03'
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c9'),
+  order_id: 1005,
+  customer_id: 5,
+  product_id: 102,
+  quantity: 3,
+  order_date: '2024-03-07'
+}
+db.products.find().sort({price : -1});
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c0'),
+  product_id: 101,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 75000
+}
+{
+  _id: 1,
+  name: 'Laptop',
+  category: 'Electronics',
+  price: 55000,
+  stock: 10,
+  city: 'Hyderabad',
+  discount: 10
+}
+{
+  _id: 2,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000,
+  stock: 15,
+  city: 'Bangalore',
+  discount: 10
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c1'),
+  product_id: 102,
+  name: 'Phone',
+  category: 'Electronics',
+  price: 50000
+}
+{
+  _id: 5,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000,
+  stock: 12,
+  city: 'Chennai',
+  discount: 10
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c4'),
+  product_id: 105,
+  name: 'Tablet',
+  category: 'Electronics',
+  price: 30000
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c2'),
+  product_id: 103,
+  name: 'Desk',
+  category: 'Furniture',
+  price: 15000
+}
+{
+  _id: ObjectId('69dcc01c1c74ae74cd7397c3'),
+  product_id: 104,
+  name: 'Chair',
+  category: 'Furniture',
+  price: 7000
+}
+                            
+db.customers.find().sort({name: 1});
+{
+  _id: ObjectId('69dcbfbf1c74ae74cd7397be'),
+  customer_id: 4,
+  name: 'Amit',
+  city: 'Delhi'
+}
+{
+  _id: ObjectId('69dcbfbf1c74ae74cd7397bb'),
+  customer_id: 1,
+  name: 'Arjun',
+  city: 'Hyderabad'
+}
+{
+  _id: ObjectId('69dcbfbf1c74ae74cd7397bf'),
+  customer_id: 5,
+  name: 'Priya',
+  city: 'Hyderabad'
+}
+{
+  _id: ObjectId('69dcbfbf1c74ae74cd7397bc'),
+  customer_id: 2,
+  name: 'Rahul',
+  city: 'Bangalore'
+}
+{
+  _id: ObjectId('69dcbfbf1c74ae74cd7397bd'),
+  customer_id: 3,
+  name: 'Sneha',
+  city: 'Mumbai'
+}
+db.orders.countDocuments();
+5
+
+db.products.aggregate( { $group : {_id: null, avgPrice : {$avg : "$price"}}});
+{
+  _id: null,
+  avgPrice: 39000
+}
+
+db.products.aggregate({ $group : {_id:null , maxPrice : {$max : "$price"}}});
+{
+  _id: null,
+  maxPrice: 75000
+}
+db.orders.aggregate({ $group: {_id : "$product_id", TotalQuantity: {$sum : "$quantity"}}});
+{
+  _id: 101,
+  TotalQuantity: 1
+}
+{
+  _id: 103,
+  TotalQuantity: 1
+}
+{
+  _id: 105,
+  TotalQuantity: 2
+}
+{
+  _id: 102,
+  TotalQuantity: 4
+}
+db.orders.aggregate([{$lookup: {from :"customers", localField: "customer_id", foreignField: "customer_id", as: "customerDetails"}}]);
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c5'),
+  order_id: 1001,
+  customer_id: 1,
+  product_id: 101,
+  quantity: 1,
+  order_date: '2024-03-01',
+  customerDetails: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bb'),
+      customer_id: 1,
+      name: 'Arjun',
+      city: 'Hyderabad'
+    }
+  ]
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c6'),
+  order_id: 1002,
+  customer_id: 2,
+  product_id: 102,
+  quantity: 1,
+  order_date: '2024-03-02',
+  customerDetails: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bc'),
+      customer_id: 2,
+      name: 'Rahul',
+      city: 'Bangalore'
+    }
+  ]
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c7'),
+  order_id: 1003,
+  customer_id: 1,
+  product_id: 105,
+  quantity: 2,
+  order_date: '2024-03-03',
+  customerDetails: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bb'),
+      customer_id: 1,
+      name: 'Arjun',
+      city: 'Hyderabad'
+    }
+  ]
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c8'),
+  order_id: 1004,
+  customer_id: 3,
+  product_id: 103,
+  quantity: 1,
+  order_date: '2024-03-05',
+  customerDetails: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bd'),
+      customer_id: 3,
+      name: 'Sneha',
+      city: 'Mumbai'
+    }
+  ]
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c9'),
+  order_id: 1005,
+  customer_id: 5,
+  product_id: 102,
+  quantity: 3,
+  order_date: '2024-03-07',
+  customerDetails: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bf'),
+      customer_id: 5,
+      name: 'Priya',
+      city: 'Hyderabad'
+    }
+  ]
+}
+db.orders.aggregate([{$lookup : {from : "products", localField: "product_id", foreignField: "product_id", as: "productDetails"}}]);
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c5'),
+  order_id: 1001,
+  customer_id: 1,
+  product_id: 101,
+  quantity: 1,
+  order_date: '2024-03-01',
+  productDetails: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c0'),
+      product_id: 101,
+      name: 'Laptop',
+      category: 'Electronics',
+      price: 75000
+    }
+  ]
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c6'),
+  order_id: 1002,
+  customer_id: 2,
+  product_id: 102,
+  quantity: 1,
+  order_date: '2024-03-02',
+  productDetails: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c1'),
+      product_id: 102,
+      name: 'Phone',
+      category: 'Electronics',
+      price: 50000
+    }
+  ]
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c7'),
+  order_id: 1003,
+  customer_id: 1,
+  product_id: 105,
+  quantity: 2,
+  order_date: '2024-03-03',
+  productDetails: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c4'),
+      product_id: 105,
+      name: 'Tablet',
+      category: 'Electronics',
+      price: 30000
+    }
+  ]
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c8'),
+  order_id: 1004,
+  customer_id: 3,
+  product_id: 103,
+  quantity: 1,
+  order_date: '2024-03-05',
+  productDetails: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c2'),
+      product_id: 103,
+      name: 'Desk',
+      category: 'Furniture',
+      price: 15000
+    }
+  ]
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c9'),
+  order_id: 1005,
+  customer_id: 5,
+  product_id: 102,
+  quantity: 3,
+  order_date: '2024-03-07',
+  productDetails: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c1'),
+      product_id: 102,
+      name: 'Phone',
+      category: 'Electronics',
+      price: 50000
+    }
+  ]
+}
+db.orders.aggregate([{$lookup : {from : "customers", localField: "customer_id", foreignField: "customer_id", as: "cust"}}, {$lookup:{from : "products", localField: "product_id", foreignField: "product_id", as :"prod"}}]);
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c5'),
+  order_id: 1001,
+  customer_id: 1,
+  product_id: 101,
+  quantity: 1,
+  order_date: '2024-03-01',
+  cust: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bb'),
+      customer_id: 1,
+      name: 'Arjun',
+      city: 'Hyderabad'
+    }
+  ],
+  prod: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c0'),
+      product_id: 101,
+      name: 'Laptop',
+      category: 'Electronics',
+      price: 75000
+    }
+  ]
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c6'),
+  order_id: 1002,
+  customer_id: 2,
+  product_id: 102,
+  quantity: 1,
+  order_date: '2024-03-02',
+  cust: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bc'),
+      customer_id: 2,
+      name: 'Rahul',
+      city: 'Bangalore'
+    }
+  ],
+  prod: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c1'),
+      product_id: 102,
+      name: 'Phone',
+      category: 'Electronics',
+      price: 50000
+    }
+  ]
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c7'),
+  order_id: 1003,
+  customer_id: 1,
+  product_id: 105,
+  quantity: 2,
+  order_date: '2024-03-03',
+  cust: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bb'),
+      customer_id: 1,
+      name: 'Arjun',
+      city: 'Hyderabad'
+    }
+  ],
+  prod: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c4'),
+      product_id: 105,
+      name: 'Tablet',
+      category: 'Electronics',
+      price: 30000
+    }
+  ]
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c8'),
+  order_id: 1004,
+  customer_id: 3,
+  product_id: 103,
+  quantity: 1,
+  order_date: '2024-03-05',
+  cust: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bd'),
+      customer_id: 3,
+      name: 'Sneha',
+      city: 'Mumbai'
+    }
+  ],
+  prod: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c2'),
+      product_id: 103,
+      name: 'Desk',
+      category: 'Furniture',
+      price: 15000
+    }
+  ]
+}
+{
+  _id: ObjectId('69dcc06e1c74ae74cd7397c9'),
+  order_id: 1005,
+  customer_id: 5,
+  product_id: 102,
+  quantity: 3,
+  order_date: '2024-03-07',
+  cust: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bf'),
+      customer_id: 5,
+      name: 'Priya',
+      city: 'Hyderabad'
+    }
+  ],
+  prod: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c1'),
+      product_id: 102,
+      name: 'Phone',
+      category: 'Electronics',
+      price: 50000
+    }
+  ]
+}
+db.orders.aggregate([{$group : {_id: "$product_id", totalQty: {$sum:"$quantity"}}}, {$lookup:{from : "products", localField: "_id", foreignField: "product_id", as :"prod"}}]);
+{
+  _id: 101,
+  totalQty: 1,
+  prod: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c0'),
+      product_id: 101,
+      name: 'Laptop',
+      category: 'Electronics',
+      price: 75000
+    }
+  ]
+}
+{
+  _id: 102,
+  totalQty: 4,
+  prod: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c1'),
+      product_id: 102,
+      name: 'Phone',
+      category: 'Electronics',
+      price: 50000
+    }
+  ]
+}
+{
+  _id: 105,
+  totalQty: 2,
+  prod: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c4'),
+      product_id: 105,
+      name: 'Tablet',
+      category: 'Electronics',
+      price: 30000
+    }
+  ]
+}
+{
+  _id: 103,
+  totalQty: 1,
+  prod: [
+    {
+      _id: ObjectId('69dcc01c1c74ae74cd7397c2'),
+      product_id: 103,
+      name: 'Desk',
+      category: 'Furniture',
+      price: 15000
+    }
+  ]
+}
+db.orders.aggregate([{$lookup : {from : "products", localField: "product_id", foreignField: "product_id", as: "prod"}}, {$unwind: "$prod"}, {$group:{_id : "$product_id", revenue: {$sum : {$multiply: ["$quantity", "$prod.price"]}}}}]);
+{
+  _id: 101,
+  revenue: 75000
+}
+{
+  _id: 103,
+  revenue: 15000
+}
+{
+  _id: 105,
+  revenue: 60000
+}
+{
+  _id: 102,
+  revenue: 200000
+}
+db.orders.aggregate([{$lookup : {from : "products", localField: "product_id", foreignField: "product_id", as: "prod"}}, {$unwind: "$prod"}, {$group:{_id : "$customer_id", revenue: {$sum : {$multiply: ["$quantity", "$prod.price"]}}}}, {$lookup: {from : "customers", localField: "_id", foreignField: "customer_id", as: "cust"}} ]);
+{
+  _id: 3,
+  revenue: 15000,
+  cust: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bd'),
+      customer_id: 3,
+      name: 'Sneha',
+      city: 'Mumbai'
+    }
+  ]
+}
+{
+  _id: 5,
+  revenue: 150000,
+  cust: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bf'),
+      customer_id: 5,
+      name: 'Priya',
+      city: 'Hyderabad'
+    }
+  ]
+}
+{
+  _id: 2,
+  revenue: 50000,
+  cust: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bc'),
+      customer_id: 2,
+      name: 'Rahul',
+      city: 'Bangalore'
+    }
+  ]
+}
+{
+  _id: 1,
+  revenue: 135000,
+  cust: [
+    {
+      _id: ObjectId('69dcbfbf1c74ae74cd7397bb'),
+      customer_id: 1,
+      name: 'Arjun',
+      city: 'Hyderabad'
+    }
+  ]
+}
+
+db.orders.aggregate([{$group: {_id: "$product_id", totalSold: {$sum: "$quantity"}}}, {$sort: {totalSold:-1}}, {$limit:1}]);
