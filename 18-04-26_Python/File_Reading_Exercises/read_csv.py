@@ -1,0 +1,13 @@
+import csv
+
+with open("data_csv.csv", "r") as file:
+    reader=csv.reader(file)
+
+    for row in reader:
+        print(row)
+
+with open("data_csv.csv", "r") as file:
+    reader=csv.DictReader(file)
+
+    for row in reader:
+        print(row["name"], row["marks"])
